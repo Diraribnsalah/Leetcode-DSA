@@ -4,23 +4,13 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    let indices=[];
-    let j=1;
-    let i=0;
-    while(i<nums.length-1)
-    {
-        while(j<nums.length)
-        {
-            if(nums[i]+nums[j]==target)
-            {
-                indices.push(i);
-                indices.push(j);
-            }
-             j++;
-        }
-       i++;
-       j=i+1; 
-    }
-    
-      return indices
+      const prev_map = new Map();
+      for (let index = 0 ; index < nums.length ; index++ ) {
+           const diff = target - nums[index] ;
+           if (prev_map.has(diff)) {
+               return [prev_map.get(diff),index];
+           }
+           prev_map.set(nums[index],index);
+      };
+      return [];
 };
